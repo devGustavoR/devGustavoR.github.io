@@ -6,7 +6,7 @@
   --header-height: 3rem;
 
   /* CORES */
-  --hue-color: 230;
+  --hue-color: 250;
 
   --cor-principal:hsl(var(--hue-color), 100%, 60%) ;
   --cor-secundaria: hsl(var(--hue-color), 69%, 61%);
@@ -25,13 +25,13 @@
   --font-principal: 'Poppins', sans-serif;
 
   /* TAMANHOS */
-  --font-size-grande:32px;
-  --h1-font-size:24px;
-  --h2-font-size:20px;
-  --h3-font-size:18px;
-  --font-size-normal:15px;
-  --font-size-pequena:13px;
-  --font-size-menor:12px;
+  --font-size-grande:2rem;
+  --h1-font-size:1.5rem;
+  --h2-font-size:1.25rem;
+  --h3-font-size:1.125rem;
+  --font-size-normal:.938rem;
+  --font-size-pequena:.813rem;
+  --font-size-menor:.75rem;
 
   /* FONT WEIGHT */
   --font-medium:500;
