@@ -73,7 +73,7 @@ function scrollHeader(){
 }
 window.addEventListener('scroll', scrollHeader)
 
-/*==================== SHOW SCROLL UP ====================*/ 
+/* SHOW SCROLL UP */ 
 
 function scrollUp(){
   const scrollUp = document.getElementById('scroll-up');
@@ -87,27 +87,91 @@ const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'fa-sun'
 
-// Previously selected topic (if user selected)
+// Tópico anteriormente seleccionado (se o utilizador o tiver seleccionado)
 const selectedTheme = localStorage.getItem('selected-theme')
 const selectedIcon = localStorage.getItem('selected-icon')
 
-// We obtain the current theme that the interface has by validating the dark-theme class
+// Obtemos o tema actual que a interface tem validando a classe dark-theme
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
 const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'fa-moon' : 'fa-sun'
 
-// We validate if the user previously chose a topic
+// Validamos se o utilizador escolheu previamente um tópico
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+  // Se a validação for cumprida, pergunta qual foi o problema para saber se ativamos ou desativamos o escuro
   document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
   themeButton.classList[selectedIcon === 'fa-moon' ? 'add' : 'remove'](iconTheme)
 }
 
-// Activate / deactivate the theme manually with the button
+// Ativar / desativar o tema manualmente com o botão
 themeButton.addEventListener('click', () => {
-    // Add or remove the dark / icon theme
+    // Adicionar ou remover o dark
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
-    // We save the theme and the current icon that the user chose
+    // Guardar o tema e o icone atual
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+// Definir textos
+const jobs = [  'Violinista',  'Gamer',];
+
+// Puxar elemento HTML 
+const jobTitleElement = document.getElementById('job-title');
+
+// Definir a função que simula a digitação do texto
+function typeWriter(text, i, fnCallback) {
+  if (i < (text.length)) {
+    jobTitleElement.innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
+
+    // Aguardar um curto período de tempo antes de chamar a si mesma novamente
+    setTimeout(function() {
+      typeWriter(text, i+1, fnCallback)
+    }, 50);
+  }
+  else if (typeof fnCallback == 'function') {
+    setTimeout(fnCallback, 300);
+  }
+}
+
+// Definir a função que reinicia o título original
+function resetJobTitle() {
+  const originalJobTitle = 'Desenvolvedor Front-end';
+  typeWriter(originalJobTitle, 0, function(){
+    // Aguardar um período de tempo antes de chamar a função de alteração do título do trabalho
+    setTimeout(function(){
+      // Verificar se ainda há trabalhos a serem exibidos
+      if (jobs.length > 0) {
+        const nextJobTitle = jobs.shift();
+        changeJobTitle(nextJobTitle);
+      } else {
+        // Reiniciar a animação após exibir todos os textos anteriores
+        jobs.push(jobs.shift()); // move o primeiro item para o final da lista
+        resetJobTitle();
+      }
+    }, 2000);
+  });
+}
+
+// Altera o título do trabalho
+function changeJobTitle(jobTitle) {
+  // Chamar a função de digitação do texto com o novo título
+  typeWriter(jobTitle, 0, function(){
+    setTimeout(function(){
+      // Verificar se ainda há trabalhos a serem exibidos
+      if (jobs.length > 0) {
+        // Obter o próximo título da lista de trabalhos e removê-lo da lista
+        const nextJobTitle = jobs.shift();
+        // Chamar a função de alteração do título do trabalho com o próximo título
+        changeJobTitle(nextJobTitle);
+      } else {
+        // Reiniciar a animação após exibir todos os textos anteriores
+        jobs.push(jobs.shift()); // move o primeiro item para o final da lista
+        resetJobTitle();
+      }
+    }, 2000);
+  });
+}
+
+// Iniciar a animação de digitação do título do trabalho
+resetJobTitle();
+
