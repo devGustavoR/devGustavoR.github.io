@@ -197,6 +197,10 @@ img{
   color: var(--cor-principal);
 }
 
+.nav__logo{
+  max-width: 5rem;
+}
+
 .nav__toggle{
   font-size: 1.1rem;
   cursor: pointer;
