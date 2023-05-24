@@ -635,11 +635,12 @@ img{
 
 .portfolio__description{
   margin-bottom:var(--mb-0-75);
+  text-align:justify;
 }
 
-.portfolio__button:hover .button__icon{
+/* .portfolio__button:hover .button__icon{
   transform:translateX(.25rem);
-}
+} */
 
 .swiper-button-prev::after,
 .swiper-button-next::after{
@@ -647,16 +648,17 @@ img{
 }
 
 .swiper-portfolio-icon{
-  font-size:1.5rem;
+  font-size:1.35rem;
   color:var(--cor-principal);
 }
 
 .swiper-button-prev{
-  left:-.5rem;
+  left:-.3rem;
 }
 
 .swiper-button-next{
-  right:-.5rem;
+  right:-.3rem;
+
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets{
