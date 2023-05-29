@@ -6,7 +6,7 @@
   --header-height: 3rem;
 
   /* CORES */
-  --hue-color: 250;
+  --hue-color: 0;
 
   --cor-principal:hsl(var(--hue-color), 100%, 60%) ;
   --cor-secundaria: hsl(var(--hue-color), 69%, 61%);
